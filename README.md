@@ -2,26 +2,22 @@
 
 ## Description
 
-ParseFullname() is designed to parse large batches of full names in multiple inconsistent formats, as from a database.
+ParseFullname() is designed to parse names with a single first name, presupposing no middle / suffix / title
 
 parseFullName():
 
-1. accepts a string containing a person's full name, in any format,
+1. accepts a string containing a person's full name
 2. analyzes and attempts to detect the format of that name,
 3. (if possible) parses the name into its component parts, and
-4. returns an object containing all individual parts of the name:
-    - title (string): title(s) (e.g. "Ms." or "Dr.")
+4. returns an object containing first  & last name:
     - first (string): first name or initial
-    - middle (string): middle name(s) or initial(s)
     - last (string): last name or initial
-    - nick (string): nickname(s)
-    - suffix (string): suffix(es) (e.g. "Jr.", "II", or "Esq.")
 
 ## Use
 
 ### Instalation
 ```
-	go get github.com/amonsat/fullname_parser
+	go get github.com/lucasgabrielson/fullname_parser
 ```
 
 ### Basic Use
@@ -32,7 +28,6 @@ import fp "github.com/amonsat/fullname_parser"
 
 func main() {
     parsedFullname := fp.ParseFullname("Mr. David Davis")
-    println(parsedFullname.Title)
     println(parsedFullname.First)
     println(parsedFullname.Last)
 }
@@ -42,18 +37,17 @@ func main() {
 
 ```go
 type ParsedName struct {
-	Title  string
 	First  string
-	Middle string
 	Last   string
-	Nick   string
-	Suffix string
 }
 ```
 
 ## Credits and precursors
 
-My thanks to David Schnell-Davis for sharing his work.
+My thanks to David Schnell-Davis & amonsat for sharing their work.
 
 David Schnell-Davis's parse-full-name
 https://github.com/dschnelldavis/parse-full-name
+
+amonsat's fullname_parser
+https://github.com/amonsat/fullname_parser
